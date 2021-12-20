@@ -8,18 +8,41 @@
   </head>
   <body>
     <h2 id="title">随机生成弦数和品数</h2>
-    <input type="button" value="点击随机生成" onclick="outputFret()">
-    <div id="FretBox">
-      
-    </div>
-    <input type="button" value="点击查看音名" onclick="getNote()">
-    <div id="NoteBox">
-      
-    </div>
-    <input type="text" id="notein" name="notein">
+    <input type="button" value="点击随机生成" onclick="outputFret()" />
+    <div id="FretBox"> </div>
+    <input type="button" value="点击查看音名" onclick="getNote()" />
+    <div id="NoteBox"> </div>
+    <input type="text" id="notein" name="notein" />
+    <p> 说明： </p>
+    <p>
+      这是GitHub用户<a href="https://github.com/aldehyde-rcho">@aldehyde-rcho</a
+      >上课摸鱼的时候随手写的一个小玩具，用来帮助自己记住贝斯指板上的音名。在下面的输入框进行输入的时候title会变色，如果写对了的话会变成<span style="color:#346751;">这个颜色</span>。
+    </p>
+    <p
+      ><input
+        type="button"
+        value="点我切换到吉他模式"
+        onclick="guitarMode()"
+      />想要切换回贝斯的话刷新一下就好了。
+    </p>
+    <p
+      >随机生成的时候0到5品的权重会相对高一些。音名的格式为大写字母+（可能有的升号）+数字</p
+    >
+
     <style>
       body {
-        background-color: gray;
+        background-color: #161616;
+        color: #ECDBBA;
+      }
+      
+      a {
+        color: #787A91;
+      }
+      input {
+        font-size: larger;
+        background: #ECDBBA;
+        color:#161616;
+
       }
     </style>
     <script>
@@ -40,18 +63,18 @@
       var parr = [0, 43, 38, 33, 28];
       var p, p1, p2;
       var i1, i2;
-      var pushnote="";
-      var fretBox=document.getElementById("FretBox");
-      var noteBox=document.getElementById("NoteBox");
-      var noteinput=document.getElementById("notein");
-      var title=document.getElementById("title");
+      var pushnote = "";
+      var fretBox = document.getElementById("FretBox");
+      var noteBox = document.getElementById("NoteBox");
+      var noteinput = document.getElementById("notein");
+      var stringcount = 4;
+      var title = document.getElementById("title");
       function found() {
-        i1 = Math.floor(Math.random() * 4) + 1;
-        var t = Math.random()*2-1;
-        if(t>=0){
-          i2=Math.floor(Math.random()*5);
-        }
-        else{            
+        i1 = Math.floor(Math.random() * stringcount) + 1;
+        var t = Math.random() * 2 - 1;
+        if (t >= 0) {
+          i2 = Math.floor(Math.random() * 5);
+        } else {
           i2 = Math.floor(Math.random() * 20);
         }
         pushnote = note(i1, i2);
@@ -64,26 +87,29 @@
         p1 = (p - p2) / 12;
         return arr[p2] + p1;
       }
-      function outputFret(){
+      function outputFret() {
         found();
-        var fretspan=document.createElement("span");
-        fretspan.innerText=i1+"弦"+i2+"品";
+        var fretspan = document.createElement("span");
+        fretspan.innerText = i1 + "弦" + i2 + "品";
         fretBox.removeChild(fretBox.childNodes[0]);
         fretBox.appendChild(fretspan);
       }
-      function getNote(){
-        var notespan=document.createElement("span");
-        notespan.innerText=pushnote;
+      function getNote() {
+        var notespan = document.createElement("span");
+        notespan.innerText = pushnote;
         noteBox.removeChild(noteBox.childNodes[0]);
         noteBox.appendChild(notespan);
       }
-      notein.oninput= function(){
-        if(notein.value==pushnote){
-          title.style.color="#8EB865";
+      notein.oninput = function () {
+        if (notein.value == pushnote) {
+          title.style.color = "#346751";
+        } else {
+          title.style.color = "#C84B31";
         }
-        else{
-          title.style.color="rgb(255,148,112)";
-        }
+      };
+      function guitarMode() {
+        parr = [0, 64, 59, 55, 50, 45, 40];
+        stringcount = 6;
       }
     </script>
   </body>
