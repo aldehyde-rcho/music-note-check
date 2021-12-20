@@ -7,7 +7,7 @@
     <title>指板记忆</title>
   </head>
   <body>
-    <h2>随机生成弦数和品数</h2>
+    <h2 id="title">随机生成弦数和品数</h2>
     <input type="button" value="点击随机生成" onclick="outputFret()">
     <div id="FretBox">
       
@@ -44,7 +44,7 @@
       var fretBox=document.getElementById("FretBox");
       var noteBox=document.getElementById("NoteBox");
       var noteinput=document.getElementById("notein");
-      var body=document.getElementByTagName("body");
+      var title=document.getElementById("title");
       function found() {
         i1 = Math.floor(Math.random() * 4) + 1;
         var t = Math.random()*2-1;
@@ -77,12 +77,12 @@
         noteBox.removeChild(noteBox.childNodes[0]);
         noteBox.appendChild(notespan);
       }
-      notein.oninput= function changebgc(){
+      notein.oninput= function(){
         if(notein.value==pushnote){
-          body.style.backGroundColor="#8EB865”；
+          title.style.color="#8EB865";
         }
         else{
-          body.style.backGroundColor="rgb(255,148,112)";
+          title.style.color="rgb(255,148,112)";
         }
       }
     </script>
