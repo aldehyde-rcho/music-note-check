@@ -77,7 +77,7 @@
         noteBox.removeChild(noteBox.childNodes[0]);
         noteBox.appendChild(notespan);
       }
-      notein.oninput(){
+      notein.oninput= function changebgc(){
         if(notein.value==pushnote){
           body.style.backGroundColor="#8EB865”；
         }
