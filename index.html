@@ -14,8 +14,9 @@
     </div>
     <input type="button" value="点击查看音名" onclick="getNote()">
     <div id="NoteBox">
-
+      
     </div>
+    <input type="text" id="notein" name="notein">
     <style>
       body {
         background-color: gray;
@@ -39,12 +40,20 @@
       var parr = [0, 43, 38, 33, 28];
       var p, p1, p2;
       var i1, i2;
-      var pushnote;
+      var pushnote="";
       var fretBox=document.getElementById("FretBox");
       var noteBox=document.getElementById("NoteBox");
+      var noteinput=document.getElementById("notein");
+      var body=document.getElementByTagName("body");
       function found() {
         i1 = Math.floor(Math.random() * 4) + 1;
-        i2 = Math.floor(Math.random() * 20);
+        var t = Math.random()*2-1;
+        if(t>=0){
+          i2=Math.floor(Math.random()*5);
+        }
+        else{            
+          i2 = Math.floor(Math.random() * 20);
+        }
         pushnote = note(i1, i2);
         return i1 + "" + i2;
       }
@@ -67,6 +76,14 @@
         notespan.innerText=pushnote;
         noteBox.removeChild(noteBox.childNodes[0]);
         noteBox.appendChild(notespan);
+      }
+      notein.oninput(){
+        if(notein.value==pushnote){
+          body.style.backGroundColor="#8EB865”；
+        }
+        else{
+          body.style.backGroundColor="rgb(255,148,112)";
+        }
       }
     </script>
   </body>
