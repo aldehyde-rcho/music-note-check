@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指板记忆</title>
+  </head>
+  <body>
+    <h2>随机生成弦数和品数</h2>
+    <input type="button" value="点击随机生成" onclick="outputFret()">
+    <div id="FretBox">
+      
+    </div>
+    <input type="button" value="点击查看音名" onclick="getNote()">
+    <div id="NoteBox">
+
+    </div>
+    <style>
+      body {
+        background-color: gray;
+      }
+    </style>
+    <script>
+      var arr = [
+        "C",
+        "C#",
+        "C",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B",
+      ];
+      var parr = [0, 43, 38, 33, 28];
+      var p, p1, p2;
+      var i1, i2;
+      var pushnote;
+      var fretBox=document.getElementById("FretBox");
+      var noteBox=document.getElementById("NoteBox");
+      function found() {
+        i1 = Math.floor(Math.random() * 4) + 1;
+        i2 = Math.floor(Math.random() * 20);
+        pushnote = note(i1, i2);
+        return i1 + "" + i2;
+      }
+      function note(i1, i2) {
+        var p, p1, p2;
+        p = parr[i1] + i2;
+        p2 = p % 12;
+        p1 = (p - p2) / 12;
+        return arr[p2] + p1;
+      }
+      function outputFret(){
+        found();
+        var fretspan=document.createElement("span");
+        fretspan.innerText=i1+"弦"+i2+"品";
+        fretBox.removeChild(fretBox.childNodes[0]);
+        fretBox.appendChild(fretspan);
+      }
+      function getNote(){
+        var notespan=document.createElement("span");
+        notespan.innerText=pushnote;
+        noteBox.removeChild(noteBox.childNodes[0]);
+        noteBox.appendChild(notespan);
+      }
+    </script>
+  </body>
+</html>
