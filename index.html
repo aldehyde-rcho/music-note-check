@@ -9,14 +9,17 @@
   <body>
     <h2 id="title">随机生成弦数和品数</h2>
     <input type="button" value="点击随机生成" onclick="outputFret()" />
-    <div id="FretBox"> </div>
+    <div id="FretBox" class="outputBox"> </div>
     <input type="button" value="点击查看音名" onclick="getNote()" />
-    <div id="NoteBox"> </div>
+    <div id="NoteBox" class="outputBox"> </div>
     <input type="text" id="notein" name="notein" />
     <p> 说明： </p>
     <p>
       这是GitHub用户<a href="https://github.com/aldehyde-rcho">@aldehyde-rcho</a
-      >上课摸鱼的时候随手写的一个小玩具，用来帮助自己记住贝斯指板上的音名。在下面的输入框进行输入的时候title会变色，如果写对了的话会变成<span style="color:#346751;">这个颜色</span>。
+      >上课摸鱼的时候随手写的一个小玩具，用来帮助自己记住贝斯指板上的音名。在下面的输入框进行输入的时候title会变色，如果写对了的话会变成<span
+        style="color: #346751"
+        >这个颜色</span
+      >。
     </p>
     <p
       ><input
@@ -32,17 +35,20 @@
     <style>
       body {
         background-color: #161616;
-        color: #ECDBBA;
+        color: #ecdbba;
       }
-      
+
       a {
-        color: #787A91;
+        color: #787a91;
       }
       input {
         font-size: larger;
-        background: #ECDBBA;
-        color:#161616;
-
+        background: #ecdbba;
+        color: #161616;
+      }
+      .outputBox{
+        font-size: 30px;
+        color: #03C4A1;
       }
     </style>
     <script>
